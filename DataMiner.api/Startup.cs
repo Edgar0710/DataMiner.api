@@ -31,6 +31,7 @@ namespace DataMiner.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc().AddNewtonsoftJson();
             services.AddServiceDependency();
             #region Swagger
             services.AddSwaggerGen(config =>
@@ -38,7 +39,7 @@ namespace DataMiner.api
                 config.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
                 //This is to generate the Default UI of Swagger Documentation  
-                config.SwaggerDoc("v1", new OpenApiInfo { Title = "CarEasy API V1", Version = "v1" });
+                config.SwaggerDoc("v1", new OpenApiInfo { Title = "Data Miner API V1", Version = "v1" });
                 // To Enable authorization using Swagger (JWT)  
                 config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
@@ -120,6 +121,7 @@ namespace DataMiner.api
             {
                 endpoints.MapControllers();
             });
+            app.UseAuthentication();
             #region Swagger
             app.UseSwagger();
 

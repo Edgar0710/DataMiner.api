@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DataMiner.Model;
 using DataMinerBussiness.IBussiness;
 using ExcelDataReader;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace dataMinerMsForms.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize(AuthenticationSchemes =Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
    public class FormController : ControllerBase
     {
         IformBusiness formb;
