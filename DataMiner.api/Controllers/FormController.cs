@@ -34,6 +34,13 @@ namespace dataMinerMsForms.api.Controllers
 
             return formb.GetRespuestaFormulario(form);
         }
+        [HttpGet, Route("DetalleForm")]
+        public Response<object> DetalleForm(int form)
+        {
+
+            return formb.DetalleForm(form);
+        }
+
 
         #endregion
         #region Post

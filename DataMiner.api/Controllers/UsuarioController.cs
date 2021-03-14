@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using dataMiner.Data.helpers;
 using DataMiner.Model;
 using DataMiner.Model.Models;
 using DataMinerBussiness.IBussiness;
@@ -23,7 +24,7 @@ namespace dataMinerMsForms.api.Controllers
             usuarioBussines = _usuarioBussines;
             _config = config;
         }
-        [HttpGet]
+        [HttpPost]
         [Route("Login")]
        
         public IActionResult Login(string email, string password)
@@ -45,8 +46,8 @@ namespace dataMinerMsForms.api.Controllers
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[] {
-                new Claim(ClaimTypes.Role, usuario.ro_nombre),
-                new Claim(ClaimTypes.Name, usuario.us_nombre),
+                new Claim("usuario", new Utils().Base64_Encode(usuario.us_id.ToString())),
+               // new Claim(ClaimTypes.PrimarySid, usuario.us_id.ToString()),
             });
 
             var token = new JwtSecurityToken(

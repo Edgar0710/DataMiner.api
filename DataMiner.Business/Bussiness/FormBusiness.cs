@@ -1,7 +1,9 @@
 ﻿using Dapper;
+
 using dataMiner.Data.IRepository;
 using DataMiner.Model;
 using DataMinerBussiness.IBussiness;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,6 +12,7 @@ using System.Linq;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace DataMinerBussiness.Bussiness
 {
@@ -18,6 +21,30 @@ namespace DataMinerBussiness.Bussiness
         IGeneralRepository<object> repository;
         public FormBusiness(IGeneralRepository<object> _repository) {
             repository = _repository;
+        }
+
+        public Response<object> DetalleForm(int form)
+        {
+            Response<object> response = new Response<object>();
+            try
+            {
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@form", form, DbType.Int32);
+                var resp = repository.GetSingle("sps_Detalle_Formulario", parameters);
+                response.Result = JsonConvert.DeserializeObject(((IDictionary<string, object>)resp)["form"].ToString());
+
+                response.Code = ResponseEnum.Ok;
+
+
+            }
+            catch (Exception ex)
+            {
+                response.Code = ResponseEnum.Fail;
+                response.Menssage = "Error al procesar la solicitud";
+
+            }
+            return response;
         }
 
         public Response<object> GetForms(int usuario)
