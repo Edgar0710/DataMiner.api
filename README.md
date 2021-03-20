@@ -42,8 +42,18 @@ El proyecto es una wepapi creada con asp.net core 3.1 se enceuntra estructurado 
 El archivo debe contener las carectiristicas  nativas de microsoft forms  dicho excel se compone por las siguientes columnas
 Nota: Esta configuracion se hizo en base a cuestionarios publicos es por ello que la columna nombre nativa no se considera y en cambio se usa 
 toma como nombre el registro de la primer pregunta en caso de que se tengza una configuracion diferente asegurece de cambiar el campo que se considera en el en point alta de formulario
-ID	Hora de inicio	Hora de finalización	Correo electrónico	Nombre	 Nombre Pregunta_1  pregunta_2  pregunta_n
+- ID	
+- Hora de inicio	
+- Hora de finalización	
+- Correo electrónico	
+- Nombre	 
+- Nombre 
+- Pregunta_1  
+- pregunta_2  
+- pregunta_n
 ![image](https://user-images.githubusercontent.com/60529884/111859120-06175900-8904-11eb-8d42-73abdea7130d.png)
 
-
+## implementación
+Para ver la implementacíon de este proyecto en un clinete puedes visitar el siguiente repositorio
+[dataMiner](https://github.com/Edgar0710/Data-Miner)
 
